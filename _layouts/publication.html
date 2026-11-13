@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <div class="page__inner-wrap">
+      <header>
+        {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title }}</h1>{% endif %}
+        {% if page.venue and page.year %}
+        <p>Published in <i>{{ page.venue }}</i>, {{ page.year }}</p>
+        {% endif %}
+      </header>
+
+      <section class="page__content" itemprop="text">
+        {{ content }}
+        {% include /components/citations.html
+          citation=page.citation
+          paperurl=page.paperurl
+          slidesurl=page.slidesurl
+          bibtexurl=page.bibtexurl
+        %}
+      </section>
+    </div>
+  </article>
+</div>
